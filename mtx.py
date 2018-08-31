@@ -10,20 +10,35 @@ def montarMatriz():
 
 class GraphMatrix():
     def __init__(self,first,matrix):
-        self.first=first
+        self.actual=first
         self.matrix=matrix
-    def get_neighbors(self,vert):
-        (x,y) = vert
-        self.matrix[x][y]
+        self.custo=0
+        self.visited=[0]*len(matrix)
     def __str__(self):
         return 'teste'
-
+    def visit(self,aresta,custo):
+        if (self.visited[aresta]==1):
+            return False
+        self.visited[aresta]=1
+        self.actual=aresta
+        self.custo+=custo
+        return True
+    def get_actual():
+        return self.actual
+    def run(*reverse):
+        print("Atualmente em %d com custo %d" % (self.actual,self.custo))
+        vizinhos=get_vizinhos(self.actual)
+        while len(vizinhos)>0:
+            v=vizinhos.pop(0 if not reverse)
+            if visit(*v) == True:
+                return
 class IncMatrix(GraphMatrix):
     def __init__(self,*args):
         super(IncMatrix,self).__init__(*args)
-    def get_destino(self,arresta):
-        destino=[(i,ar[arresta]) for i,ar in enumerate(self.matrix) if ar[arresta] > 0]
+    def get_destino(self,aresta):
+        destino=[(i,ar[aresta]) for i,ar in enumerate(self.matrix) if ar[aresta] > 0]
         return destino[0]
+
 #        i=0
 #        vizinhos=list()
 #        for ar in self.matrix:
@@ -31,25 +46,30 @@ class IncMatrix(GraphMatrix):
 #                vizinhos.append((i,ar[vert]))
 #            i+=1
 
-    def get_arrestas(self,vert):
-        arrestas=[(i,ar) for i,ar in enumerate(self.matrix[vert]) if ar<0 ]
-#        print ("Arrestas conectadas a %d:",vert)
-#        print (arrestas)
-        return arrestas
-#        arrestas=list()
+    def get_arestas(self,vert):
+        arestas=[(i,ar) for i,ar in enumerate(self.matrix[vert]) if ar<0 ]
+        return arestas
+
+#        print ("Arestas conectadas a %d:",vert)
+#        print (arestas)
+#        arestas=list()
 #        for ar in self.matrix[vert]:
 #            if ar < 0:
-#                arrestas.append
-    def show_vizinhos(self,vert):
+#                arestas.append
+#        return arestas
+    def get_vizinhos(self,vert):
         vizinhos=[]
-        for arresta in self.get_arrestas(vert):
-            (a,valor)=arresta
+        for aresta in self.get_arestas(vert):
+            (a,valor)=aresta
             vizinhos.append(self.get_destino(a))
-        print (vizinhos)
+        vizinhos.sort(key=lambda tupla:tupla[1])
+        return vizinhos 
+
 class AdjMatrix(GraphMatrix):
     def __init__(self,*args):
         super(AdjMatrix,self).__init__(*args)
-    def show_vizinhos(self,vert):
+    def get_vizinhos(self,vert):
         vizinhos=[(i,ar) for i,ar in enumerate(self.matrix[vert]) if ar>0 ]
+        vizinhos.sort(key=lambda tupla:tupla[1])
         return vizinhos
     
