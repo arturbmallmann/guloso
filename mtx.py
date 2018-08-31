@@ -51,8 +51,9 @@ class IncMatrix(GraphMatrix):
 #        print("tam %d aresta %d" % (len(self.matrix),aresta))
         for i in range(0,len(self.matrix)):
             linha=self.matrix[i]
-            if linha[aresta] > 0:
-                return (i,linha[aresta])
+            if linha[aresta] != 0 and i!=self.actual:
+                return i
+#                return (i,linha[aresta])
 #            vet+=self.matrix[aresta][i]
             
 #        print (vet)
@@ -60,14 +61,14 @@ class IncMatrix(GraphMatrix):
 #        print(result)
 #        return result[0]
     def get_arestas(self,vert):
-        arestas=[(i,ar) for i,ar in enumerate(self.matrix[vert]) if ar<0 ]
+        arestas=[(i,ar) for i,ar in enumerate(self.matrix[vert]) if ar>0 ]
         return arestas
     def get_vizinhos(self,vert):
         vizinhos=[]
         for aresta in self.get_arestas(vert):
             (a,valor)=aresta
-            print ((a,valor))
-            vizinhos.append(self.get_destino(a))
+            print("aresta saídas de %d: %d custo %d" %(vert,*aresta))
+            vizinhos.append((self.get_destino(a),valor))
         vizinhos.sort(key=lambda tupla:tupla[1])
         return vizinhos 
 
