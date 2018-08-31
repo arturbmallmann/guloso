@@ -6,9 +6,10 @@ def main():
     while matrix.run():
         print ("\n") 
 def carregaMatriz(args):
+    print(args)
     first=int(input('Qual o vertice inicial?'))
     matrix=mtx.montarMatriz()
-    if [args[0]=='--adj']:
+    if args[0]=='--adj':
         print("Matriz de Adjascência")
         return mtx.AdjMatrix(first,matrix)
     else:
