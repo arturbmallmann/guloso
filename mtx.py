@@ -23,15 +23,19 @@ class GraphMatrix():
         self.actual=aresta
         self.custo+=custo
         return True
-    def get_actual():
+    def get_actual(self):
         return self.actual
-    def run(*reverse):
+    def run(self,*reverse):
         print("Atualmente em %d com custo %d" % (self.actual,self.custo))
-        vizinhos=get_vizinhos(self.actual)
+        vizinhos=self.get_vizinhos(self.actual)
         while len(vizinhos)>0:
-            v=vizinhos.pop(0 if not reverse)
-            if visit(*v) == True:
-                return
+            if reverse:
+                v=vizinhos.pop()
+            else:
+                v=vizinhos.pop(0)
+            if self.visit(*v) == True:
+                return True
+        return False
 class IncMatrix(GraphMatrix):
     def __init__(self,*args):
         super(IncMatrix,self).__init__(*args)

@@ -1,8 +1,10 @@
 import mtx
 import sys
 def main():
-   args=[x for x in sys.argv if x.startswith('--')]
-   matrix=carregaMatriz(args)
+    args=[x for x in sys.argv if x.startswith('--')]
+    matrix=carregaMatriz(args)
+    while matrix.run():
+        print ("\n") 
 def carregaMatriz(args):
     first=int(input('Qual o vertice inicial?'))
     matrix=mtx.montarMatriz()
