@@ -15,6 +15,8 @@ class GraphMatrix():
         self.custo=0
         self.visited=[0]*len(matrix)
         self.visited[first]=1
+        for i,linha in enumerate(matrix):
+            print ("linha %d: %s"%(i,linha))
     def __str__(self):
         return 'teste'
     def visit(self,aresta,custo):
