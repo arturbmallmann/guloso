@@ -8,8 +8,19 @@ def montarMatriz():
             return matriz
         matriz.append([int(x) for x in resp.split(' ')])
 
+def carregaMatriz(args):
+    print(args)
+    first=int(input('Qual o vertice inicial?'))
+    matrix=montarMatriz()
+    if args[0]=='--adj':
+        print("Matriz de Adjascência")
+        return AdjMatrix(first,matrix)
+    elif args[0]=='--inc':
+        print("Matriz de Incidência")
+        return IncMatrix(first,matrix)
+
 class GraphMatrix():
-    def __init__(self,first,matrix):
+    def __init__(self,first,matrix):#de certa forma isto não deveria estar aqui e desta forma
         self.actual=first
         self.matrix=matrix
         self.custo=0
@@ -28,7 +39,11 @@ class GraphMatrix():
         return True
     def get_actual(self):
         return self.actual
-    def run(self,*reverse):
+    def set_actual(self,actual):
+        self.actual=actual
+    def size(self):
+        return len(self.matrix)
+    def run(self,*reverse): #nem isto
         print("Atualmente em %d com custo %d" % (self.actual,self.custo))
         vizinhos=self.get_vizinhos(self.actual)
         print ("vizinhos:")
@@ -97,5 +112,6 @@ class AdjMatrix(GraphMatrix):
     def get_vizinhos(self,vert):
         vizinhos=[(i,ar) for i,ar in enumerate(self.matrix[vert]) if ar>0 ]
         vizinhos.sort(key=lambda tupla:tupla[1])
+        print(vizinhos)
         return vizinhos
     
