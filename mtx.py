@@ -21,6 +21,7 @@ def carregaMatriz(args):
         return IncMatrix(first,matrix)
 
 class BuscaMatriz():
+    #matrizNova=list()
     def __init__(self,matrix):
         self.matrix=matrix
         self.custo=[inf]*matrix.size()

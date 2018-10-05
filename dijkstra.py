@@ -42,6 +42,7 @@ class Dijkstra(mtx.BuscaMatriz):
         
         self.matrix.set_actual(actual)
         self.fila.remove(actual)
+
 def main():
     args=[x for x in sys.argv if x.startswith('--')]
     matrix=mtx.carregaMatriz(args)
