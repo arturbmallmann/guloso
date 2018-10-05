@@ -1,12 +1,13 @@
 #Matriz de Incidência
-
+from math import inf
 def montarMatriz():
     matriz=list()
     while True:
         resp = input()
         if not resp:
             return matriz
-        matriz.append([int(x) for x in resp.split(' ')])
+        entrada=[int(x) for x in resp.split(' ') if (x<'a' and x!='')]
+        matriz.append(entrada)
 
 def carregaMatriz(args):
     print(args)
@@ -18,6 +19,17 @@ def carregaMatriz(args):
     elif args[0]=='--inc':
         print("Matriz de Incidência")
         return IncMatrix(first,matrix)
+
+class BuscaMatriz():
+    def __init__(self,matrix):
+        self.matrix=matrix
+        self.custo=[inf]*matrix.size()
+        self.pai=[-1]*matrix.size()
+    def backtrack(self,destino):
+        print(destino)
+        pai=self.pai[destino]
+        if(pai!=-1):
+            self.backtrack(pai)
 
 class GraphMatrix():
     def __init__(self,first,matrix):#de certa forma isto não deveria estar aqui e desta forma

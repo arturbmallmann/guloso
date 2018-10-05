@@ -1,13 +1,15 @@
 import mtx
 import sys
 from math import inf
-class largura():
+class Largura(mtx.BuscaMatriz):
     show=lambda self:print("Custo: %s\nPai: %s\nCor: %s\nAtual: %d" % (self.custo,self.pai,self.cor,self.matrix.get_actual()))
     def __init__(self,matrix):
-        self.matrix=matrix
-        self.custo=[inf]*matrix.size()
-        self.pai=[-1]*matrix.size()
+#        self.matrix=matrix
+#        self.custo=[inf]*matrix.size()
+#        self.pai=[-1]*matrix.size()
+        super(Largura,self).__init__(matrix)
         self.cor=['w']*matrix.size()
+
     def explora(self,index):
         self.matrix.set_actual(index)#só para contagem
         self.show()
@@ -32,7 +34,7 @@ def main():
     args=[x for x in sys.argv if x.startswith('--')]
     matrix=mtx.carregaMatriz(args)
     
-    lar=largura(matrix)
+    lar=Largura(matrix)
     explorar=[matrix.get_actual()]
     while(explorar!=[]):
         print("==================================")
@@ -42,5 +44,6 @@ def main():
         print("explorar: %s"%(aux))
         explorar=aux
     lar.show()
+    lar.backtrack(int(input("backtrack:")))
 if __name__=='__main__':
     main()

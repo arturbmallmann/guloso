@@ -1,14 +1,16 @@
 import mtx
 import sys
 from math import inf
-class dijkstra():
+class Dijkstra(mtx.BuscaMatriz):
     show=lambda self:print("Custo: %s\nPai: %s\nFila %s\nAtual: %d" % (self.custo,self.pai,self.fila,self.matrix.get_actual()))
     def __init__(self,matrix):
-        self.matrix=matrix
-        self.custo=[inf]*matrix.size()
-        self.pai=[-1]*matrix.size()
+#        self.matrix=matrix
+#        self.custo=[inf]*matrix.size()
+#        self.pai=[-1]*matrix.size()
+        super(Dijkstra,self).__init__(matrix)
         self.fila=list(range(0,matrix.size()))
         self.fila.remove(self.matrix.get_actual())
+
 #        self.custo[self.matrix.get_actual()]=0
     def explora(self):
         index=self.matrix.get_actual()
@@ -44,11 +46,12 @@ def main():
     args=[x for x in sys.argv if x.startswith('--')]
     matrix=mtx.carregaMatriz(args)
     
-    di=dijkstra(matrix)
+    di=Dijkstra(matrix)
     di.explora()
     while(di.end()==False):
         print("==================================")
         di.explora()
         di.choose()
+    di.backtrack(int(input("backtrack:")))
 if __name__=='__main__':
     main()
