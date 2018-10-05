@@ -112,6 +112,5 @@ class AdjMatrix(GraphMatrix):
     def get_vizinhos(self,vert):
         vizinhos=[(i,ar) for i,ar in enumerate(self.matrix[vert]) if ar>0 ]
         vizinhos.sort(key=lambda tupla:tupla[1])
-        print(vizinhos)
         return vizinhos
     

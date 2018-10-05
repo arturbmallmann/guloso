@@ -9,9 +9,11 @@ class dijkstra():
         self.pai=[-1]*matrix.size()
         self.fila=list(range(0,matrix.size()))
         self.fila.remove(self.matrix.get_actual())
-        self.custo[self.matrix.get_actual()]=0
+#        self.custo[self.matrix.get_actual()]=0
     def explora(self):
         index=self.matrix.get_actual()
+        if(self.custo[index]==inf):#caso seja desconexo
+            self.custo[index]=0
         for vizinho in self.matrix.get_vizinhos(index):
             (vert,value)=vizinho
             self.show()
