@@ -1,5 +1,8 @@
 #Matriz de Incidência
 from math import inf
+
+letra = lambda x:chr(ord('a')+x)
+
 def montarMatriz():
     matriz=list()
     while True:
