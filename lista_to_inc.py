@@ -13,7 +13,7 @@ def montarLista():
         entrada=[num(x) for x in resp.split(' ') if (x>='a' and x<='~')]
         for x in entrada:
             maior=testa(x,maior)
-        print (maior)
+#        print (maior)
         arestas.append(entrada)
 def main ():
     (arestas,tamanho)=montarLista()
@@ -33,5 +33,7 @@ def main ():
             linha+=chr(ord('0')+matris[y][x])
             linha+=' '
         print (linha)
+    
+    print("\n\n")
 if __name__ == "__main__":
     main()
